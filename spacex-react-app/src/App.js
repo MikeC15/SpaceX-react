@@ -3,7 +3,7 @@ import Register from './Register';
 import Login from './Login';
 import './App.css';
 // import CommentContainer from './CommentContainer';
-// import HeaderComponent from './HeaderComponent';
+import HeaderComponent from './HeaderComponent';
 import { Route, Switch } from 'react-router-dom';
 
 const My404 = () => {
@@ -17,13 +17,15 @@ const My404 = () => {
 function App() {
   return (
     <main>
-      {/* <HeaderComponent /> */}
-      <Switch>
+      <HeaderComponent />
+      <Register />
+      <Login />
+      {/* <Switch>
         <Route exact path="/" component={Register} />
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/login" component={Login} /> */}
         {/* <Route exact path="/comments" component={CommentContainer} /> */}
-        <Route component={My404} />
-      </Switch>
+        {/* <Route component={My404} />
+      </Switch> */}
     </main>
   );
 }

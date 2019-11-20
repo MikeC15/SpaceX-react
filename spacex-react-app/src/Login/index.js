@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Label, Button, Message } from 'semantic-ui-react';
+import { Form, Label, Button, Message, Container } from 'semantic-ui-react';
 
 class Login extends Component {
     constructor() {
@@ -31,7 +31,10 @@ class Login extends Component {
         const parsedResponse = await loginResponse.json();
         if (parsedResponse.status.code === 200) {
             console.log('Login successful');
-            this.props.history.push('/comments');
+            // this.props.history.push('/comments');
+            this.setState({
+                LoginMsg: parsedResponse.status.message
+            });
         } else {
             this.setState({
                 errorMsg: parsedResponse.status.message
@@ -41,15 +44,18 @@ class Login extends Component {
 
     render() {
         return (
-            <Form onSubmit={this.handleSubmit}>
-                <h4>Sign In</h4>
-                <Label>Email</Label>
-                <Form.Input type="email" name="email" onChange={this.handleChange} required />
-                <Label>Password</Label>
-                <Form.Input type="password" name="password" onChange={this.handleChange} required />
-                <Button type="submit" color="green">Login</Button>
-                {this.state.errorMsg ? <Message negative>{this.state.errorMsg}</Message> : null}
-            </Form>
+            <Container>
+                <Form onSubmit={this.handleSubmit}>
+                    <h4>Sign In</h4>
+                    <Label>Email</Label>
+                    <Form.Input type="email" name="email" onChange={this.handleChange} required />
+                    <Label>Password</Label>
+                    <Form.Input type="password" name="password" onChange={this.handleChange} required />
+                    <Button type="submit" color="green">Login</Button>
+                    {this.state.errorMsg ? <Message negative>{this.state.errorMsg}</Message> : null}
+                    {this.state.LoginMsg ? <Message positive>{this.state.LoginMsg}</Message> : null}
+                </Form>
+            </Container>
         )
     }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Label, Button, Message } from 'semantic-ui-react';
+import { Form, Label, Button, Message, Container } from 'semantic-ui-react';
 
 class Register extends Component {
     constructor(){
@@ -31,7 +31,10 @@ class Register extends Component {
         const parsedResponse = await registerResponse.json();
         if (parsedResponse.status.code === 201) {
             console.log('Sign up successful');
-            this.props.history.push('/comments');
+            // this.props.history.push('/comments');
+            this.setState({
+                RegisterMsg: parsedResponse.status.message
+            });
         } else {
             this.setState({
                 errorMsg: parsedResponse.status.message
@@ -41,15 +44,18 @@ class Register extends Component {
 
     render() {
         return (
-            <Form onSubmit={this.handleSubmit}>
-                <h4>Register New User</h4>
-                <Label>Email</Label>
-                <Form.Input type="email" name="email" onChange={this.handleChange} required />
-                <Label>Password</Label>
-                <Form.Input type="password" name="password" onChange={this.handleChange} required />
-                <Button type="submit" color="green">Sign Up</Button>
-                {this.state.errorMsg ? <Message negative>{this.state.errorMsg}</Message> : null}
-            </Form>
+            <Container>
+                <Form onSubmit={this.handleSubmit}>
+                    <h4>Register New User</h4>
+                    <Label>Email</Label>
+                    <Form.Input type="email" name="email" onChange={this.handleChange} required />
+                    <Label>Password</Label>
+                    <Form.Input type="password" name="password" onChange={this.handleChange} required />
+                    <Button type="submit" color="green">Sign Up</Button>
+                    {this.state.errorMsg ? <Message negative>{this.state.errorMsg}</Message> : null}
+                    {this.state.RegisterMsg ? <Message positive>{this.state.RegisterMsg}</Message> : null}
+                </Form>
+            </Container>
         )
     }
 }
