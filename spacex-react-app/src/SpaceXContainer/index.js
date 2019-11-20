@@ -48,6 +48,12 @@ class SpaceXContainer extends Component {
         // console.log(this.state.mission)
     }
 
+    backToMissions = () =>{
+        this.setState({
+            mission: null
+        })
+    }
+
     getPastLaunches = async () => {
         try {
             const launches = await fetch('https://api.spacexdata.com/v3/launches/past')
@@ -86,8 +92,8 @@ class SpaceXContainer extends Component {
             <div>
                 <Header>Missions</Header>
                 <Segment style={{ overflow: 'auto', maxHeight: 300 }} >
-                    {/* <MissionContainer missions={this.state.missions} getOneMission={this.getOneMission} mission={this.state.mission} /> */}
-                    {this.state.mission ? <OneMissionContainer mission={this.state.mission} /> : <MissionContainer missions={this.state.missions} getOneMission={this.getOneMission} />  }
+                    {/* SOCOOL TERNARY to change pages */}
+                    {this.state.mission ? <OneMissionContainer mission={this.state.mission} backToMissions={this.backToMissions} /> : <MissionContainer missions={this.state.missions} getOneMission={this.getOneMission} />  }
                 </Segment>
                 <Header>Upcoming Launches</Header>
                 <Header>Past Launches</Header>
