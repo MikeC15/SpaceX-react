@@ -1,6 +1,6 @@
 import React from 'react';
 import Register from './Register';
-// import Login from './Login';
+import Login from './Login';
 import './App.css';
 // import CommentContainer from './CommentContainer';
 // import HeaderComponent from './HeaderComponent';
@@ -20,7 +20,7 @@ function App() {
       {/* <HeaderComponent /> */}
       <Switch>
         <Route exact path="/" component={Register} />
-        {/* <Route exact path="/login" component={Login} /> */}
+        <Route exact path="/login" component={Login} />
         {/* <Route exact path="/comments" component={CommentContainer} /> */}
         <Route component={My404} />
       </Switch>
