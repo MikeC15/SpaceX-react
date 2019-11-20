@@ -30,12 +30,12 @@ class SpaceXContainer extends Component {
     }
 
     getOneMission = async (missionId) => {
-        console.log(' MISSIONID:',missionId)
+        // console.log(' MISSIONID:',missionId)
 
         try {
             const mission = await fetch('https://api.spacexdata.com/v3/missions/'+missionId)
             const parsedMission = await mission.json()
-            console.log('ONE PARSEDMISSION:', parsedMission)
+            // console.log('ONE PARSEDMISSION:', parsedMission)
             this.setState({
                 mission: parsedMission
             })
@@ -92,7 +92,7 @@ class SpaceXContainer extends Component {
             <div>
                 <Header>Missions</Header>
                 <Segment style={{ overflow: 'auto', maxHeight: 300 }} >
-                    {/* SOCOOL TERNARY to change pages */}
+                    {/* SOCOOL TERNARY to change pages to show the clickedmission */}
                     {this.state.mission ? <OneMissionContainer mission={this.state.mission} backToMissions={this.backToMissions} /> : <MissionContainer missions={this.state.missions} getOneMission={this.getOneMission} />  }
                 </Segment>
                 <Header>Upcoming Launches</Header>

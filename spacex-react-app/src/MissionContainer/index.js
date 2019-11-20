@@ -7,11 +7,6 @@ function MissionContainer(props) {
         return (
             <React.Fragment key={mission.mission_id}>
                 <Header onClick={() => {props.getOneMission(mission.mission_id) }}>{mission.mission_name}</Header>
-                {/* <Header as={Link} to={"/missions/" + mission.mission_id}>{mission.mission_name}</Header> */}
-                <Segment key={mission.mission_id} style={{ overflow: 'auto', maxHeight: 75 }}>
-                    {mission.description}
-                    {/* Arrest: {mission.arrest ? "Arrested" : "Not Arrested"} <br />  EXAMPLE OF BOOLEAN USAGE*/}
-                </Segment>
             </React.Fragment>
         )
     })
