@@ -4,7 +4,7 @@ import { Header, List } from 'semantic-ui-react';
 
 const HeaderComponent = () => {
     return (
-        <Header>
+        <Header textAlign='center'>
             <List horizontal>
                 <List.Item>
                     <List.Header>
@@ -13,7 +13,13 @@ const HeaderComponent = () => {
                 </List.Item>
                 <List.Item>
                     <List.Header>
-                        <Link to="/comments">Comments</Link>
+                        <Link to="/spacex">SpaceX</Link>
+                    </List.Header>
+                </List.Item>
+                <br />
+                <List.Item>
+                    <List.Header>
+                        Go straight to SpaceX, or Login/Register to comment
                     </List.Header>
                 </List.Item>
             </List>

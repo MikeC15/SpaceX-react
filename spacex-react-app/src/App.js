@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginPage from './LoginPage';
 import './App.css';
-// import CommentContainer from './CommentContainer';
+import SpaceXContainer from './SpaceXContainer';
 import HeaderComponent from './HeaderComponent';
 import { Route, Switch } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ function App() {
       <HeaderComponent />
       <Switch>
         <Route exact path="/" component={LoginPage} />
-        {/* <Route exact path="/comments" component={CommentContainer} /> */}
+        <Route exact path="/spacex" component={SpaceXContainer} />
         <Route component={My404} />
       </Switch>
     </main>
