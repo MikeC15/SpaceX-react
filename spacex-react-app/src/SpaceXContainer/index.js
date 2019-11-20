@@ -3,6 +3,7 @@ import MissionContainer from '../MissionContainer'
 import { Segment, Header } from 'semantic-ui-react'
 // import PastLaunchContainer from '../PastLaunchContainer'
 // import FutureLaunchContainer from '../FutureLaunchContainer'
+import OneMissionContainer from '../OneMissionContainer'
 
 class SpaceXContainer extends Component {
     constructor() {
@@ -11,7 +12,7 @@ class SpaceXContainer extends Component {
             missions: [],
             pastLaunches: [],
             futureLaunches: [],
-            mission: []
+            mission: null
         }
     }
 
@@ -28,12 +29,23 @@ class SpaceXContainer extends Component {
         }
     }
 
-    getOneMission = (missionId) => {
+    getOneMission = async (missionId) => {
         console.log(' MISSIONID:',missionId)
-        this.setState((previousState) => (
-            { mission: previousState.missions.filter((mission) => mission.mission_id === missionId) }
-        ))
-        console.log(this.state.mission)
+
+        try {
+            const mission = await fetch('https://api.spacexdata.com/v3/missions/'+missionId)
+            const parsedMission = await mission.json()
+            console.log('ONE PARSEDMISSION:', parsedMission)
+            this.setState({
+                mission: parsedMission
+            })
+        } catch (err) {
+            console.log(err)
+        }
+        // this.setState((previousState) => (
+        //     { mission: previousState.missions.filter((mission) => mission.mission_id === missionId) }
+        // ))
+        // console.log(this.state.mission)
     }
 
     getPastLaunches = async () => {
@@ -73,9 +85,9 @@ class SpaceXContainer extends Component {
         return (
             <div>
                 <Header>Missions</Header>
-                {/* <CrimesList crimes={this.state.crimes} deleteCrime={this.deleteCrime} />  EXAMPLE TO PASS DOWN PROPS FROM THIS API*/}
                 <Segment style={{ overflow: 'auto', maxHeight: 300 }} >
-                    <MissionContainer missions={this.state.missions} getOneMission={this.getOneMission} mission={this.state.mission} />
+                    {/* <MissionContainer missions={this.state.missions} getOneMission={this.getOneMission} mission={this.state.mission} /> */}
+                    {this.state.mission ? <OneMissionContainer mission={this.state.mission} /> : <MissionContainer missions={this.state.missions} getOneMission={this.getOneMission} />  }
                 </Segment>
                 <Header>Upcoming Launches</Header>
                 <Header>Past Launches</Header>

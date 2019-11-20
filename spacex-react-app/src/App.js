@@ -3,7 +3,7 @@ import LoginPage from './LoginPage';
 import './App.css';
 import SpaceXContainer from './SpaceXContainer';
 import HeaderComponent from './HeaderComponent';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useParams } from 'react-router-dom';
 
 const My404 = () => {
   return(
@@ -20,6 +20,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={LoginPage} />
         <Route exact path="/spacex" component={SpaceXContainer} />
+        {/* <Route exact path="/mission/:id" component={OneMissionContainer} */}
         <Route component={My404} />
       </Switch>
     </main>
