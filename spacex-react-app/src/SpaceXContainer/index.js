@@ -10,13 +10,14 @@ class SpaceXContainer extends Component {
         this.state = {
             missions: [],
             pastLaunches: [],
-            futureLaunches: []
+            futureLaunches: [],
+            mission: []
         }
     }
 
     getMissions = async () => {
         try {
-            const missions = await fetch('https://api.spacexdata.com/v3/missions?limit=20')
+            const missions = await fetch('https://api.spacexdata.com/v3/missions')
             const parsedMissions = await missions.json()
             console.log('PARSEDMISSIONS',parsedMissions)
             this.setState({
@@ -25,6 +26,14 @@ class SpaceXContainer extends Component {
         } catch (err) {
             console.log(err)
         }
+    }
+
+    getOneMission = (missionId) => {
+        console.log(' MISSIONID:',missionId)
+        this.setState((previousState) => (
+            { mission: previousState.missions.filter((mission) => mission.mission_id === missionId) }
+        ))
+        console.log(this.state.mission)
     }
 
     getPastLaunches = async () => {
@@ -66,7 +75,7 @@ class SpaceXContainer extends Component {
                 <Header>Missions</Header>
                 {/* <CrimesList crimes={this.state.crimes} deleteCrime={this.deleteCrime} />  EXAMPLE TO PASS DOWN PROPS FROM THIS API*/}
                 <Segment style={{ overflow: 'auto', maxHeight: 300 }} >
-                    <MissionContainer missions={this.state.missions} />
+                    <MissionContainer missions={this.state.missions} getOneMission={this.getOneMission} mission={this.state.mission} />
                 </Segment>
                 <Header>Upcoming Launches</Header>
                 <Header>Past Launches</Header>
