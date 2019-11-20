@@ -17,9 +17,9 @@ function OneMissionContainer(props) {
             {eachPayload}
             <h5>Mission Description:</h5>
             <Segment style={{ overflow: 'auto', maxHeight: 80 }} >{props.mission.description}</Segment>
-            <Icon link name='chrome' />
-            <Icon link name='twitter' />
-            <Icon link name='wikipedia w' />
+            <a target='_blank' href={props.mission.website}><Icon link name='chrome' /></a>
+            <a target='_blank' href={props.mission.wikipedia}><Icon link name='wikipedia w' /></a>
+            <a target='_blank' href={props.mission.twitter}><Icon link name='twitter' /></a>
         </div>
     )
 }
