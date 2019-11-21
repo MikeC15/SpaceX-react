@@ -71,6 +71,24 @@ class SpaceXContainer extends Component {
             console.log(err)
         }
     }
+    getOnePastLaunch = async (launchId) => {
+        console.log(' LAUNCHID:',launchId)
+        try {
+            const launch = await fetch('https://api.spacexdata.com/v3/launches/' + launchId)
+            const parsedLaunch = await launch.json()
+            console.log('ONE PARSEDLAUNCH:', parsedLaunch)
+            this.setState({
+                pastLaunch: parsedLaunch
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    backToPastLaunches = () => {
+        this.setState({
+            pastLaunch: null
+        })
+    }
 
     getFutureLaunches = async () => {
         try {
@@ -123,8 +141,9 @@ class SpaceXContainer extends Component {
                         {this.state.futureLaunch ? <OneFutureLaunchContainer futureLaunch={this.state.futureLaunch} backToFutureLaunches={this.backToFutureLaunches} /> : <FutureLaunchContainer launches={this.state.futureLaunches} getOneFutureLaunch={this.getOneFutureLaunch} />}
                     </Segment>
                 <Header>Past Launches</Header>
-                {/* <PastLaunchContainer launches={this.state.pastLaunches} />
-                <FutureLaunchContainer launches={this.state.futureLaunches} /> */}
+                    <Segment style={{ overflow: 'auto', maxHeight: 300 }} >
+                        {this.state.pastLaunch ? <OnePastLaunchContainer pastLaunch={this.state.pastLaunch} backToPastLaunches={this.backToPastLaunches} /> : <PastLaunchContainer launches={this.state.pastLaunches} getOnePastLaunch={this.getOnePastLaunch} />}
+                    </Segment>
             </div>
         )
     }
