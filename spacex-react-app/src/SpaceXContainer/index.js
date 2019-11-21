@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import MissionContainer from '../MissionContainer'
 import { Segment, Header } from 'semantic-ui-react'
+
 // import PastLaunchContainer from '../PastLaunchContainer'
-import FutureLaunchContainer from '../FutureLaunchContainer'
+// import OnePastLaunchContainer from '../OnePastLaunchContainer'
+
+import MissionContainer from '../MissionContainer'
 import OneMissionContainer from '../OneMissionContainer'
+
+import FutureLaunchContainer from '../FutureLaunchContainer'
 import OneFutureLaunchContainer from '../OneFutureLaunchContainer'
 
 class SpaceXContainer extends Component {
@@ -31,7 +35,6 @@ class SpaceXContainer extends Component {
             console.log(err)
         }
     }
-
     getOneMission = async (missionId) => {
         // console.log(' MISSIONID:',missionId)
 
@@ -50,7 +53,6 @@ class SpaceXContainer extends Component {
         // ))
         // console.log(this.state.mission)
     }
-
     backToMissions = () =>{
         this.setState({
             mission: null
@@ -82,19 +84,23 @@ class SpaceXContainer extends Component {
             console.log(err)
         }
     }
-
     getOneFutureLaunch = async (launchId) => {
         // console.log(' LAUNCHID:',launchId)
         try {
             const launch = await fetch('https://api.spacexdata.com/v3/launches/' + launchId)
             const parsedLaunch = await launch.json()
-            // console.log('ONE PARSEDLAUNCH:', parsedLaunch)
+            console.log('ONE PARSEDLAUNCH:', parsedLaunch)
             this.setState({
                 futureLaunch: parsedLaunch
             })
         } catch (err) {
             console.log(err)
         }
+    }
+    backToFutureLaunches = () => {
+        this.setState({
+            futureLaunch: null
+        })
     }
 
     componentDidMount() {
@@ -114,7 +120,7 @@ class SpaceXContainer extends Component {
                     </Segment>
                 <Header>Upcoming Launches</Header>
                     <Segment style={{ overflow: 'auto', maxHeight: 300 }} >
-                        {this.state.mission ? <OneFutureLaunchContainer futureLaunch={this.state.futureLaunch} backToFutureLaunches={this.backToFutureLaunches} /> : <FutureLaunchContainer launches={this.state.futureLaunches} getOneFutureLaunch={this.getOneFutureLaunch} />}
+                        {this.state.futureLaunch ? <OneFutureLaunchContainer futureLaunch={this.state.futureLaunch} backToFutureLaunches={this.backToFutureLaunches} /> : <FutureLaunchContainer launches={this.state.futureLaunches} getOneFutureLaunch={this.getOneFutureLaunch} />}
                     </Segment>
                 <Header>Past Launches</Header>
                 {/* <PastLaunchContainer launches={this.state.pastLaunches} />
