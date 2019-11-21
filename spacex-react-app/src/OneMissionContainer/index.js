@@ -1,6 +1,5 @@
 import React from 'react'
 import { Segment, Header, Icon } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
 
 function OneMissionContainer(props) {
     const eachPayload = props.mission.payload_ids.map((payload, i) => {

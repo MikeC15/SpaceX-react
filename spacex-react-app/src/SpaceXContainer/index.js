@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import MissionContainer from '../MissionContainer'
 import { Segment, Header } from 'semantic-ui-react'
 // import PastLaunchContainer from '../PastLaunchContainer'
-// import FutureLaunchContainer from '../FutureLaunchContainer'
+import FutureLaunchContainer from '../FutureLaunchContainer'
 import OneMissionContainer from '../OneMissionContainer'
+import OneFutureLaunchContainer from '../OneFutureLaunchContainer'
 
 class SpaceXContainer extends Component {
     constructor() {
@@ -12,7 +13,9 @@ class SpaceXContainer extends Component {
             missions: [],
             pastLaunches: [],
             futureLaunches: [],
-            mission: null
+            mission: null,
+            futureLaunch: null,
+            pastLaunch: null
         }
     }
 
@@ -80,22 +83,39 @@ class SpaceXContainer extends Component {
         }
     }
 
+    getOneFutureLaunch = async (launchId) => {
+        // console.log(' LAUNCHID:',launchId)
+        try {
+            const launch = await fetch('https://api.spacexdata.com/v3/launches/' + launchId)
+            const parsedLaunch = await launch.json()
+            // console.log('ONE PARSEDLAUNCH:', parsedLaunch)
+            this.setState({
+                futureLaunch: parsedLaunch
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     componentDidMount() {
         this.getMissions()
         this.getPastLaunches()
         this.getFutureLaunches()
-        console.log("THIS.STATE",this.state)
+        console.log("THIS.STATE", this.state)
     }
 
     render() {
         return (
             <div>
                 <Header>Missions</Header>
-                <Segment style={{ overflow: 'auto', maxHeight: 300 }} >
-                    {/* SOCOOL TERNARY to change pages to show the clickedmission */}
-                    {this.state.mission ? <OneMissionContainer mission={this.state.mission} backToMissions={this.backToMissions} /> : <MissionContainer missions={this.state.missions} getOneMission={this.getOneMission} />  }
-                </Segment>
+                    <Segment style={{ overflow: 'auto', maxHeight: 300 }} >
+                        {/* SOCOOL TERNARY to change pages to show the clickedmission */}
+                        {this.state.mission ? <OneMissionContainer mission={this.state.mission} backToMissions={this.backToMissions} /> : <MissionContainer missions={this.state.missions} getOneMission={this.getOneMission} />  }
+                    </Segment>
                 <Header>Upcoming Launches</Header>
+                    <Segment style={{ overflow: 'auto', maxHeight: 300 }} >
+                        {this.state.mission ? <OneFutureLaunchContainer futureLaunch={this.state.futureLaunch} backToFutureLaunches={this.backToFutureLaunches} /> : <FutureLaunchContainer launches={this.state.futureLaunches} getOneFutureLaunch={this.getOneFutureLaunch} />}
+                    </Segment>
                 <Header>Past Launches</Header>
                 {/* <PastLaunchContainer launches={this.state.pastLaunches} />
                 <FutureLaunchContainer launches={this.state.futureLaunches} /> */}
