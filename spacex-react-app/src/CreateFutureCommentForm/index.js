@@ -15,8 +15,8 @@ class CreateComment extends Component {
         this.setState({ [e.currentTarget.name]: e.currentTarget.value })
         this.setFlightId()
     }
-    setFlightId = () =>{
-        this.setState({flight_number: this.props.mission.mission_id})
+    setFlightId = () => {
+        this.setState({ flight_number: this.props.futureLaunch.flight_number })
     }
     render() {
         return (
