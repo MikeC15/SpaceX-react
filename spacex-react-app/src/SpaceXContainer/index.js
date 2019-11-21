@@ -132,17 +132,17 @@ class SpaceXContainer extends Component {
         return (
             <div>
                 <Header>Missions</Header>
-                    <Segment style={{ overflow: 'auto', maxHeight: 200 }} >
+                    <Segment style={{ overflow: 'auto', maxHeight: 300 }} >
                         {/* SOCOOL TERNARY to change pages to show the clickedmission */}
-                        {this.state.mission ? <OneMissionContainer mission={this.state.mission} backToMissions={this.backToMissions} /> : <MissionContainer missions={this.state.missions} getOneMission={this.getOneMission} />  }
+                    {this.state.mission ? <OneMissionContainer mission={this.state.mission} backToMissions={this.backToMissions} /> : <MissionContainer missions={this.state.missions} getOneMission={this.getOneMission} />  }
                     </Segment>
                 <Header>Upcoming Launches</Header>
                     <Segment style={{ overflow: 'auto', maxHeight: 300 }} >
-                        {this.state.futureLaunch ? <OneFutureLaunchContainer futureLaunch={this.state.futureLaunch} backToFutureLaunches={this.backToFutureLaunches} /> : <FutureLaunchContainer launches={this.state.futureLaunches} getOneFutureLaunch={this.getOneFutureLaunch} />}
+                    {this.state.futureLaunch ? <OneFutureLaunchContainer futureLaunch={this.state.futureLaunch} backToFutureLaunches={this.backToFutureLaunches} /> : <FutureLaunchContainer launches={this.state.futureLaunches} getOneFutureLaunch={this.getOneFutureLaunch} />}
                     </Segment>
                 <Header>Past Launches</Header>
                     <Segment style={{ overflow: 'auto', maxHeight: 300 }} >
-                        {this.state.pastLaunch ? <OnePastLaunchContainer pastLaunch={this.state.pastLaunch} backToPastLaunches={this.backToPastLaunches} /> : <PastLaunchContainer launches={this.state.pastLaunches} getOnePastLaunch={this.getOnePastLaunch} />}
+                    {this.state.pastLaunch ? <OnePastLaunchContainer pastLaunch={this.state.pastLaunch} backToPastLaunches={this.backToPastLaunches} /> : <PastLaunchContainer launches={this.state.pastLaunches} getOnePastLaunch={this.getOnePastLaunch} />}
                     </Segment>
             </div>
         )

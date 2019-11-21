@@ -1,5 +1,6 @@
 import React from 'react'
 import { Segment, Header, Icon } from 'semantic-ui-react'
+import CommentFutureLaunchContainer from '../CommentFutureLaunchContainer'
 
 function OneFutureLaunchContainer(props) {
     // const eachPayload = props.mission.payload_ids.map((payload, i) => {
@@ -12,6 +13,8 @@ function OneFutureLaunchContainer(props) {
     return (
         <div>
             <Header onClick={() => { props.backToFutureLaunches() }}>{props.futureLaunch.mission_name}</Header>
+            <h5>Future Launch Comments:</h5>
+            <CommentFutureLaunchContainer futureLaunch={props.futureLaunch} />
             {/* <h5>Payloads for {props.mission.mission_name}</h5> */}
             {/* {eachPayload} */}
             {/* <h5>Mission Description:</h5>
