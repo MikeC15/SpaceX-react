@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Segment, Header } from 'semantic-ui-react'
 
-// import PastLaunchContainer from '../PastLaunchContainer'
-// import OnePastLaunchContainer from '../OnePastLaunchContainer'
+import PastLaunchContainer from '../PastLaunchContainer'
+import OnePastLaunchContainer from '../OnePastLaunchContainer'
 
 import MissionContainer from '../MissionContainer'
 import OneMissionContainer from '../OneMissionContainer'
@@ -132,7 +132,7 @@ class SpaceXContainer extends Component {
         return (
             <div>
                 <Header>Missions</Header>
-                    <Segment style={{ overflow: 'auto', maxHeight: 300 }} >
+                    <Segment style={{ overflow: 'auto', maxHeight: 200 }} >
                         {/* SOCOOL TERNARY to change pages to show the clickedmission */}
                         {this.state.mission ? <OneMissionContainer mission={this.state.mission} backToMissions={this.backToMissions} /> : <MissionContainer missions={this.state.missions} getOneMission={this.getOneMission} />  }
                     </Segment>

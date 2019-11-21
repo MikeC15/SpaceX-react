@@ -47,6 +47,8 @@ class Register extends Component {
             <Container>
                 <Form onSubmit={this.handleSubmit}>
                     <h4>Register New User</h4>
+                    <Label>Username</Label>
+                    <Form.Input type="username" name="username" onChange={this.handleChange} required />
                     <Label>Email</Label>
                     <Form.Input type="email" name="email" onChange={this.handleChange} required />
                     <Label>Password</Label>
