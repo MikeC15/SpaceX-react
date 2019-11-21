@@ -1,5 +1,6 @@
 import React from 'react'
 import { Segment, Header, Icon } from 'semantic-ui-react'
+import CommentPastLaunchContainer from '../CommentPastLaunchContainer'
 
 function OnePastLaunchContainer(props) {
     // const eachPayload = props.mission.payload_ids.map((payload, i) => {
@@ -12,6 +13,8 @@ function OnePastLaunchContainer(props) {
     return (
         <div>
             <Header onClick={() => { props.backToPastLaunches() }}>{props.pastLaunch.mission_name}</Header>
+            <h5>Past Launch Comments:</h5>
+            <CommentPastLaunchContainer pastLaunch={props.pastLaunch} />
             {/* <h5>Payloads for {props.mission.mission_name}</h5> */}
             {/* {eachPayload} */}
             {/* <h5>Mission Description:</h5>

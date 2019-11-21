@@ -1,9 +1,8 @@
 import React from 'react';
 import { Card, Button, Segment, Header } from 'semantic-ui-react';
 
-function CommentFutureLaunchList(props) {
-    // console.log("PROPS.FUTURELAUNCH", props.futureLaunch)
-    const comments = props.comments.filter(comment => comment.flight_number == props.futureLaunch.flight_number)
+function CommentPastLaunchList(props) {
+    const comments = props.comments.filter(comment => comment.flight_number == props.pastLaunch.flight_number)
     const filteredComments = comments.map((comment) => {
         return (
             <Segment style={{ overflow: 'auto', maxHeight: 100, flexWrap: "wrap" }} key={comment.id}>
@@ -26,4 +25,4 @@ function CommentFutureLaunchList(props) {
     )
 }
 
-export default CommentFutureLaunchList
+export default CommentPastLaunchList
