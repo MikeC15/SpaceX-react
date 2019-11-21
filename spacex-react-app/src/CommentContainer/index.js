@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CommentList from '../CommentList'
-// import CreateDogForm from '../CreateDogForm'
+import CreateCommentForm from '../CreateCommentForm'
 import { Grid } from 'semantic-ui-react'
 // import EditDogModal from '../EditDogModal'
 
@@ -40,43 +40,30 @@ class CommentContainer extends Component {
         }
     }
 
-    // create function here, pass it down do createdogfrom and then run it with passed in info to lift
-    // addDog = async (e, dogFromTheForm) => {
-    //     e.preventDefault();
-    //     console.log(dogFromTheForm)
-
-    //     //POST ROUTE
-    //     try {
-    //         // We have to send JSON
-    //         // createdMovie variable will store the response from the express API
-    //         const createdDogResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/dogs/', {
-    //             method: 'POST',
-    //             body: JSON.stringify(dogFromTheForm),
-    //             credentials: 'include',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         });
-    //         // we have to turn the response from flask into
-    //         // an object we can use
-    //         const parsedResponse = await createdDogResponse.json();
-    //         console.log(parsedResponse, ' this is response')
-    //         // we are emptying all the dogs that are living in state into a new array,
-    //         // and then adding the dog we just created to the end of it
-    //         // the new dog which is called parsedResponse.data
-    //         if (parsedResponse.status.code === 201) {
-    //             this.setState({ dogs: [...this.state.dogs, parsedResponse.data] })
-    //         } else {
-    //             alert(parsedResponse.status.message)
-    //         }
-
-    //     } catch (err) {
-    //         console.log('error')
-    //         console.log(err)
-    //     }
-    //     // request address will start with 'http://localhost:9000'
-    //     // becuase after we create it, we want to add it to the dogs array
-    // }
+    addComment = async (e, commentFromTheForm) => {
+        e.preventDefault();
+        console.log("COMMENT LIFTING UP FROM FORM",commentFromTheForm)
+        try {
+            const createdCommentResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/comments/', {
+                method: 'POST',
+                body: JSON.stringify(commentFromTheForm),
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const parsedResponse = await createdCommentResponse.json();
+            console.log(parsedResponse, ' this is response')
+            if (parsedResponse.status.code === 201) {
+                this.setState({ comments: [...this.state.comments, parsedResponse.data] })
+            } else {
+                alert("You must be logged in to comment")
+            }
+        } catch (err) {
+            console.log('error')
+            console.log(err)
+        }
+    }
 
     // deleteDog = async (id) => {
     //     console.log(id)
@@ -149,8 +136,10 @@ class CommentContainer extends Component {
 
     render() {
         return (
-            <CommentList mission={this.props.mission} comments={this.state.comments} />
-
+            <React.Fragment>
+                <CommentList mission={this.props.mission} comments={this.state.comments} />
+                <CreateCommentForm mission={this.props.mission} addComment={this.addComment} />
+            </React.Fragment>
             // <Grid columns={2} divided textAlign='center' style={{ height: '100%' }} verticalAlign='top' stackable>
             //     <Grid.Row>
             //         <Grid.Column>
