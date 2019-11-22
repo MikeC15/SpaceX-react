@@ -1,29 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Header, List } from 'semantic-ui-react';
+import { Header, List, Container, Image } from 'semantic-ui-react';
+import './style.css';
 
 const HeaderComponent = () => {
     return (
-        <Header textAlign='center'>
-            <List horizontal>
+        <Container fluid className="headertop" textAlign="center">
+            <List horizontal >
+                <Image floated='left' size='medium' src="https://www.spacex.com/sites/spacex/files/spacex_logo_white.png" alt="Home" />
                 <List.Item>
-                    <List.Header>
-                        <Link to="/">Home</Link>
-                    </List.Header>
-                </List.Item>
-                <List.Item>
-                    <List.Header>
+                    <List.Header floated='right'>
+                        <Link to="/">Login to Comment</Link><br/>
                         <Link to="/spacex">SpaceX</Link>
                     </List.Header>
                 </List.Item>
-                <br />
                 <List.Item>
                     <List.Header>
-                        Go straight to SpaceX, or Login/Register to comment
                     </List.Header>
                 </List.Item>
             </List>
-        </Header>
+        </Container>
     )
 }
 

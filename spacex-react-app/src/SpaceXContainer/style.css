@@ -1,0 +1,17 @@
+.mainSegments {
+    /* background-color: #163C62 !important; */
+    background-image: linear-gradient(black, #163C62) !important;
+}
+.bigdiv {
+    
+}
+.divs {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+.divheaders{
+    text-align: center;
+}
