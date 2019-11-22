@@ -1,4 +1,20 @@
-.headertop {
+div.headertop.container {
     background-image: linear-gradient(black, #1A3249) !important;
+    display:flex;
+    justify-content: center;
     /* background-color: #1A3249; */
+}
+/* @media(max-width:600px){
+    div.headertop.container {
+        margin-left:0;
+        margin-right:0;
+    }
+}   */
+
+@media only screen and (max-width: 767px) {
+div.ui.container.ui.fluid {
+    margin-left:0 !important;
+    margin-right:0 !important;
+    align-content: center !important;
+    }
 }

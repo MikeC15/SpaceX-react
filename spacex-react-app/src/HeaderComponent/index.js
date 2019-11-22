@@ -14,10 +14,6 @@ const HeaderComponent = () => {
                         <Link to="/spacex">SpaceX</Link>
                     </List.Header>
                 </List.Item>
-                <List.Item>
-                    <List.Header>
-                    </List.Header>
-                </List.Item>
             </List>
         </Container>
     )
