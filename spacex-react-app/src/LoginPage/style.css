@@ -1,0 +1,11 @@
+body {
+    background-image: url("https://live.staticflickr.com/65535/48129182836_fd53e5646b_o_d.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.logincontainer{
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(22,60,98,.8)) !important;
+    padding: 30px;
+    margin-top: 25px;
+}

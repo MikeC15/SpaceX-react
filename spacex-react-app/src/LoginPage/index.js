@@ -1,13 +1,16 @@
 import React from 'react';
 import Register from '../Register';
 import Login from '../Login';
+import './style.css'
+import { Container } from 'semantic-ui-react'
+
 
 function LoginPage() {
     return (
-        <main>
+        <Container className="logincontainer">
             <Register />
             <Login />
-        </main>
+        </Container>
     );
 }
 

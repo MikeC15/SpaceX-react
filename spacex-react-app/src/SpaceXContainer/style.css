@@ -17,3 +17,21 @@
 .divheaders{
     text-align: center;
 }
+.divone {
+    background-image: url("https://live.staticflickr.com/65535/48954138902_e9ae0d1a65_o_d.jpg") !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.divtwo {
+    background-image: url("https://live.staticflickr.com/65535/48129269897_22d854be5c_o_d.jpg") !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.divthree {
+    background-image: url("https://live.staticflickr.com/7608/16661753958_9f61f777e7_o_d.jpg") !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
