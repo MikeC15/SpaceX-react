@@ -1,5 +1,5 @@
 import React from 'react';
-import { Comment, Header } from 'semantic-ui-react';
+import { Comment, Header, Button } from 'semantic-ui-react';
 
 function CommentList(props) {
     // console.log("PROPS.MISSION PASSED DOWN FROM PARENTPARENT", props.mission)
@@ -12,6 +12,7 @@ function CommentList(props) {
                     <Header as='h5' dividing>{comment.user.username}</Header>
                     <Comment.Text>{comment.content}</Comment.Text>
                     <Comment.Metadata>{comment.created_at}</Comment.Metadata>
+                    <Button onClick={() => props.deleteComment(comment.id)}>Delete Comment</Button>
                     {/* <Card.Content extra> */}
                         {/* <Button onClick={() => props.deleteDog(dog.id)}>DeleteDog</Button> */}
                         {/* <Button onClick={() => props.openEditModal(dog)}>Edit Dog</Button> */}

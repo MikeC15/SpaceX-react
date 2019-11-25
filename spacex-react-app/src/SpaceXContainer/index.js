@@ -133,18 +133,21 @@ class SpaceXContainer extends Component {
     render() {
         return (
             <div className="bigdiv">
+
                 <div className="divone divs">
                     <Header className="divheaders">Past Launches</Header>
                         <Segment style={{ overflow: 'auto', maxHeight: 400, whiteSpace: "nowrap"}} inverted tertiary className="mainSegments">
                             {this.state.pastLaunch ? <OnePastLaunchContainer pastLaunch={this.state.pastLaunch} backToPastLaunches={this.backToPastLaunches} /> : <PastLaunchContainer launches={this.state.pastLaunches} getOnePastLaunch={this.getOnePastLaunch} />}
                         </Segment>
                 </div>
+
                 <div className="divtwo divs">
                     <Header className="divheaders">Upcoming Launches</Header>
                         <Segment inverted tertiary className="mainSegments" style={{ overflow: 'auto', maxHeight: 400, whiteSpace: "nowrap"}} >
                             {this.state.futureLaunch ? <OneFutureLaunchContainer futureLaunch={this.state.futureLaunch} backToFutureLaunches={this.backToFutureLaunches} /> : <FutureLaunchContainer launches={this.state.futureLaunches} getOneFutureLaunch={this.getOneFutureLaunch} />}
                         </Segment>
                 </div>
+
                 <div className="divthree divs">
                     <Header className="divheaders">Missions</Header>
                         <Segment inverted tertiary className="mainSegments" style={{ overflow: 'auto', maxHeight: 350}} >
@@ -152,6 +155,7 @@ class SpaceXContainer extends Component {
                             {this.state.mission ? <OneMissionContainer mission={this.state.mission} backToMissions={this.backToMissions} /> : <MissionContainer missions={this.state.missions} getOneMission={this.getOneMission} />}
                         </Segment>
                 </div>
+                
             </div>
         )
     }

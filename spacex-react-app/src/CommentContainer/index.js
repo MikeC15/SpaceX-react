@@ -65,25 +65,21 @@ class CommentContainer extends Component {
         }
     }
 
-    // deleteDog = async (id) => {
-    //     console.log(id)
-    //     const deleteDogResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/dogs/' + id, {
-    //         method: 'DELETE',
-    //         credentials: 'include'
-    //     });
-    //     // This is the parsed response from dog
-    //     const deleteDogParsed = await deleteDogResponse.json();
-    //     console.log(deleteDogParsed)
-    //     // Now that the db has deleted our item, we need to remove it from state
-    //     // returns a new array filtered out.
-    //     //creating a new array with every object except the one we deleted with id
-    //     if (deleteDogParsed.status.code === 200) {
-    //         console.log(deleteDogParsed, ' response from Flask server')
-    //         this.setState({ dogs: this.state.dogs.filter((dog) => dog.id !== id) })
-    //     } else {
-    //         alert(deleteDogParsed.status.message);
-    //     }
-    // }
+    deleteComment = async (id) => {
+        // console.log(id)
+        const deleteCommentResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/comments/' + id, {
+            method: 'DELETE',
+            credentials: 'include'
+        });
+        const deleteCommentParsed = await deleteCommentResponse.json();
+        console.log(deleteCommentParsed)
+        if (deleteCommentParsed.status.code === 200) {
+            console.log(deleteCommentParsed, ' response from Flask server')
+            this.setState({ comments: this.state.comments.filter((comment) => comment.id !== id) })
+        } else {
+            alert(deleteCommentParsed.status.message);
+        }
+    }
 
     // openEditModal = (dogFromTheList) => {
     //     console.log('dog to edit:', dogFromTheList)
@@ -137,7 +133,7 @@ class CommentContainer extends Component {
     render() {
         return (
             <React.Fragment>
-                <CommentList mission={this.props.mission} comments={this.state.comments} />
+                <CommentList mission={this.props.mission} deleteComment={this.deleteComment} comments={this.state.comments} />
                 <CreateCommentForm mission={this.props.mission} addComment={this.addComment} />
             </React.Fragment>
             // <Grid columns={2} divided textAlign='center' style={{ height: '100%' }} verticalAlign='top' stackable>
