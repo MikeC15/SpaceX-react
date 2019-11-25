@@ -3,7 +3,7 @@ import { Modal, Form, Button, Label, Header } from 'semantic-ui-react';
 
 
 const EditCommentModal = (props) => {
-    console.log(props)
+    // console.log(props)
     return (
         <Modal open={props.open}>
             <Header>Edit Comment</Header>

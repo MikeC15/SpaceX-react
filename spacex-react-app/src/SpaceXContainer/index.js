@@ -135,21 +135,21 @@ class SpaceXContainer extends Component {
             <div className="bigdiv">
 
                 <div className="divone divs">
-                    <Header className="divheaders">Past Launches</Header>
+                    <Header size="huge" className="divheaders">Past Launches</Header>
                         <Segment style={{ overflow: 'auto', maxHeight: 400, whiteSpace: "nowrap"}} inverted tertiary className="mainSegments">
                             {this.state.pastLaunch ? <OnePastLaunchContainer pastLaunch={this.state.pastLaunch} backToPastLaunches={this.backToPastLaunches} /> : <PastLaunchContainer launches={this.state.pastLaunches} getOnePastLaunch={this.getOnePastLaunch} />}
                         </Segment>
                 </div>
 
                 <div className="divtwo divs">
-                    <Header className="divheaders">Upcoming Launches</Header>
+                    <Header size="huge" className="divheaders">Upcoming Launches</Header>
                         <Segment inverted tertiary className="mainSegments" style={{ overflow: 'auto', maxHeight: 400, whiteSpace: "nowrap"}} >
                             {this.state.futureLaunch ? <OneFutureLaunchContainer futureLaunch={this.state.futureLaunch} backToFutureLaunches={this.backToFutureLaunches} /> : <FutureLaunchContainer launches={this.state.futureLaunches} getOneFutureLaunch={this.getOneFutureLaunch} />}
                         </Segment>
                 </div>
 
                 <div className="divthree divs">
-                    <Header className="divheaders">Missions</Header>
+                    <Header size="huge" className="divheaders">Missions</Header>
                         <Segment inverted tertiary className="mainSegments" style={{ overflow: 'auto', maxHeight: 350}} >
                             {/* SOCOOL TERNARY to change pages to show the clickedmission */}
                             {this.state.mission ? <OneMissionContainer mission={this.state.mission} backToMissions={this.backToMissions} /> : <MissionContainer missions={this.state.missions} getOneMission={this.getOneMission} />}

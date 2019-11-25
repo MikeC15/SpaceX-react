@@ -1,0 +1,11 @@
+.head{
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 140px !important;
+    color: rgb(22,60,98) !important;
+    text-shadow:
+		-3px -3px 0 #000,
+		3px -3px 0 #000,
+		-3px 3px 0 #000,
+		3px 3px 0 #000;
+
+}

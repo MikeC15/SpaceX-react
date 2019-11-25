@@ -12,7 +12,7 @@ function OneMissionContainer(props) {
 
     return (
         <div>
-            <Header onClick={() => { props.backToMissions() }}>{props.mission.mission_name}</Header>
+            <Header onClick={() => { props.backToMissions() }}><Icon name="arrow alternate circle left outline" />{props.mission.mission_name}</Header>
             <h5>Mission Description:</h5>
             <Segment style={{ overflow: 'auto', maxHeight: 80 }} >{props.mission.description}</Segment>
             <h5>Payloads for {props.mission.mission_name}</h5>

@@ -1,12 +1,10 @@
-.mainSegments {
-    /* background-color: #163C62 !important; */
-    /* background-image: linear-gradient(black, #163C62) !important; */
-    background-image: linear-gradient(rgba(0,0,0,.1), rgba(22,60,98,.6)) !important;
+/* @font-face { font-family: Delicious; src: url('Fonts/SFOuterLimits.ttf'); }  */
 
-}
-.bigdiv {
+.mainSegments {
+    background-image: linear-gradient(rgba(0,0,0,.1), rgba(22,60,98,.6)) !important;
     
 }
+
 .divs {
     height: 100vh;
     display: flex;
@@ -16,6 +14,17 @@
 }
 .divheaders{
     text-align: center;
+    /* FONT AND SIZE HERE */
+    /* font-family: Delicious; */
+    font-family: 'Righteous', cursive !important;
+    font-size: 150%;
+    color: rgb(22,60,98) !important;
+    text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+
 }
 .divone {
     background-image: url("https://live.staticflickr.com/65535/48954138902_e9ae0d1a65_o_d.jpg") !important;
@@ -35,3 +44,4 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
