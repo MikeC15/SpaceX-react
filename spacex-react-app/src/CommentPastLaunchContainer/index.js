@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import CommentPastLaunchList from '../CommentPastLaunchList'
 import CreatePastCommentForm from '../CreatePastCommentForm'
-import { Grid } from 'semantic-ui-react'
-// import EditDogModal from '../EditDogModal'
+import EditCommentModal from '../EditCommentModal'
 
 class CommentPastLaunchContainer extends Component {
     constructor(props) {
@@ -11,12 +10,10 @@ class CommentPastLaunchContainer extends Component {
         this.state = {
             comments: [],
             showEditModal: false,
-            // commentToEdit: {
-            //     name: '',
-            //     breed: '',
-            // owner: '',
-            // id: ''
-            // }
+            commentToEdit: {
+                content: '',
+                id: ''
+            }
         }
     }
 
@@ -81,72 +78,67 @@ class CommentPastLaunchContainer extends Component {
         }
     }
 
-    // openEditModal = (dogFromTheList) => {
-    //     console.log('dog to edit:', dogFromTheList)
-    //     this.setState({
-    //         showEditModal: true,
-    //         dogToEdit: { ...dogFromTheList }
-    //     })
-    // }
+    openEditModal = (commentFromTheList) => {
+        console.log('comment to edit:', commentFromTheList)
+        this.setState({
+            showEditModal: true,
+            commentToEdit: { ...commentFromTheList }
+        })
+    }
 
-    // handleEditChange = (e) => {
-    //     this.setState({
-    //         dogToEdit: {
-    //             ...this.state.dogToEdit,
-    //             // below name attribute from input box name = 'breed, name = "name etc" ... value is what we typed in
-    //             [e.currentTarget.name]: e.currentTarget.value
-    //         }
-    //     })
-    // }
+    handleEditChange = (e) => {
+        this.setState({
+            commentToEdit: {
+                ...this.state.commentToEdit,
+                [e.currentTarget.name]: e.currentTarget.value
+            }
+        })
+    }
 
-    // closeAndEdit = async (e) => {
-    //     e.preventDefault()
-    //     try {
-    //         console.log('sending new dog data to server:', this.state.dogToEdit)
-    //         const editResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/dogs/' + this.state.dogToEdit.id, {
-    //             method: 'PUT',
-    //             credentials: 'include',
-    //             body: JSON.stringify(this.state.dogToEdit),
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         })
-    //         const editResponseParsed = await editResponse.json()
-    //         console.log('editResponseParsed', editResponseParsed)
-    //         //swap dog in database with new parsed edited dog
-    //         const newDogArrayWithEdit = this.state.dogs.map((dog) => {
-    //             if (dog.id === editResponseParsed.data.id) {
-    //                 dog = editResponseParsed.data
-    //             }
-    //             return dog;
-    //         })
-    //         //now we have new dog array so set state
-    //         this.setState({
-    //             dogs: newDogArrayWithEdit,
-    //             showEditModal: false
-    //         })
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
+    closeAndEdit = async (e) => {
+        e.preventDefault()
+        try {
+            console.log('sending new comment data to server:', this.state.commentToEdit)
+            const editResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/comments/' + this.state.commentToEdit.id, {
+                method: 'PUT',
+                credentials: 'include',
+                body: JSON.stringify(this.state.commentToEdit),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            const editResponseParsed = await editResponse.json()
+            console.log('editResponseParsed', editResponseParsed)
+            if (editResponseParsed.status.code === 200) {
+                console.log('editResponseParsed', editResponseParsed)
+                const newCommentArrayWithEdit = this.state.comments.map((comment) => {
+                    if (comment.id === editResponseParsed.data.id) {
+                        comment = editResponseParsed.data
+                    }
+                    return comment;
+                })
+                this.setState({
+                    comments: newCommentArrayWithEdit,
+                    showEditModal: false
+                })
+            } else {
+                alert(editResponseParsed.status.message);
+                this.setState({
+                    showEditModal: false
+                })
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     render() {
         return (
             <React.Fragment>
-                <CommentPastLaunchList pastLaunch={this.props.pastLaunch} deleteComment={this.deleteComment} comments={this.state.comments} />
+                <CommentPastLaunchList pastLaunch={this.props.pastLaunch} deleteComment={this.deleteComment} comments={this.state.comments} openEditModal={this.openEditModal} />
                 <CreatePastCommentForm pastLaunch={this.props.pastLaunch} addComment={this.addComment} />
+                <EditCommentModal handleEditChange={this.handleEditChange} open={this.state.showEditModal} commentToEdit={this.state.commentToEdit} closeAndEdit={this.closeAndEdit} />
             </React.Fragment>
-            // <Grid columns={2} divided textAlign='center' style={{ height: '100%' }} verticalAlign='top' stackable>
-            //     <Grid.Row>
-            //         <Grid.Column>
-            //             <DogList dogs={this.state.dogs} deleteDog={this.deleteDog} openEditModal={this.openEditModal} />
-            //         </Grid.Column>
-            //         <Grid.Column>
-            //             <CreateDogForm addDog={this.addDog} />
-            //         </Grid.Column>
-            //         <EditDogModal handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} dogToEdit={this.state.dogToEdit} open={this.state.showEditModal} />
-            //     </Grid.Row>
-            // </Grid>
         )
     }
 }

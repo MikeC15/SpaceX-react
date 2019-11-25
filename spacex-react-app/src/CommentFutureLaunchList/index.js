@@ -12,7 +12,7 @@ function CommentFutureLaunchList(props) {
                     <Comment.Text>{comment.content}</Comment.Text>
                     <Comment.Metadata>{comment.created_at}</Comment.Metadata><br />
                     <Icon name="close" onClick={() => props.deleteComment(comment.id)} />
-                    {/* <Icon name="edit" onClick={() => props.openEditModal(comment)} /> */}
+                    <Icon name="edit" onClick={() => props.openEditModal(comment)} />
                 </Comment.Content>
             </Comment>
         )

@@ -13,6 +13,11 @@ function OnePastLaunchContainer(props) {
     return (
         <div>
             <Header onClick={() => { props.backToPastLaunches() }}>{props.pastLaunch.mission_name}</Header>
+            {/* {props.pastLaunch.launch_success ? <img src="" /> : <img src="" /> } */}
+
+            <h5>Mission Details:</h5>
+            <Segment style={{ overflow: 'auto', maxHeight: 80 }} >{props.pastLaunch.details}</Segment>
+
             <h5>Past Launch Comments:</h5>
             <CommentPastLaunchContainer pastLaunch={props.pastLaunch} />
             {/* <h5>Payloads for {props.mission.mission_name}</h5> */}
